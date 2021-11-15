@@ -38,6 +38,7 @@ class ControlPanel extends PureComponent<any, State> {
     }
   }
   async componentDidMount() {
+    localStorage.setItem("removed", "[]")
     this.setState({
       notifications: [{
         id: `gh`,
@@ -68,6 +69,7 @@ class ControlPanel extends PureComponent<any, State> {
       } else {
       }
     } catch (error) {
+      console.error(error)
       message.error('网络异常');
     }
 
@@ -147,7 +149,7 @@ class ControlPanel extends PureComponent<any, State> {
           </div>
           <div style={{ width: "100%", height: "calc(100% - 50px)", }}>
             {Array.from(this.state.notifications, (item, aid) => {
-            const removed = loacalRemoved.has(item.id)
+              const removed = loacalRemoved.has(item.id)
               displayed++
               return <div key={`${item.id}-${aid}`} style={{ width: "100%", overflowX: "scroll" }} onScroll={async (event) => {
                 const target = event.target as HTMLDivElement
@@ -157,9 +159,9 @@ class ControlPanel extends PureComponent<any, State> {
                   await this.removeNotification(item.id)
                 }
               }}>
-                <div style={{ width: removed? "100%":"400%" }}>
-                  <div style={{ width: removed? "100%":"25%", padding: 16, paddingTop: 0 }}>
-                    <Card loading={false} style={{ position: "relative", borderRadius: 15,opacity:loacalRemoved.has(item.id)?0.3:1 }} onClick={async () => {
+                <div style={{ width: removed ? "100%" : "400%" }}>
+                  <div style={{ width: removed ? "100%" : "25%", padding: 16, paddingTop: 0 }}>
+                    <Card loading={false} style={{ position: "relative", borderRadius: 15, opacity: loacalRemoved.has(item.id) ? 0.3 : 1 }} onClick={async () => {
                       await OpenLink(item.url.href)
                       await this.removeNotification(item.id)
                     }}>

@@ -17,6 +17,7 @@ type GithubNotification = {
     repository: {
         name: string
         full_name: string
+        url: string
         private: boolean
     }
 }
@@ -40,19 +41,57 @@ export async function GetGithubNotifications(): Promise<Notification[]> {
         let action = "?"
         switch (item.reason) {
             case "mention":
-                action = "提到了你"
+                action = "有人提到了你"
                 break;
+            case "ci_activity":
+                action = "CI触发了事件"
+                break;
+            case "author":
+                action = "有人请示你"
+                break;
+            case "state_change":
+                action = "状态改变了"
+                break;
+            case "assign":
+                action = "给你分配了任务"
+                break;
+
+
             default:
                 action = item.reason
                 break;
         }
+
+        let type = "?"
+        switch (item.subject.type) {
+            case "CheckSuite":
+                type = "Checks"
+                break;
+            case "Issue":
+                type = "议题"
+                break;
+            case "PullRequest":
+                type = "合并请求"
+                break;
+            default:
+                type = item.subject.type
+                break;
+        }
+
+
+        let subURL = item.subject.url || item.repository.url || "https://github.com/notifications?query=is%3Aunread"
+        if (item.reason === "ci_activity") {
+            subURL = `${item.repository.url}/actions`
+        }
+
+
         result.push({
             id: `gh-${item.id}(${item.updated_at}/${item.reason}/${item.subject.url}/)`,
             brief: `${item.subject.title}`,
-            title: `有人在 ${item.subject.type} ${action}`,
-            summary: `在${item.repository.private ? "私有仓库" : "公开仓库"} ${item.repository.name} 中的 ${item.subject.title}${item.subject.type} 里有人${action}`,
+            title: `${action}`,
+            summary: `在${item.repository.private ? "私有仓库" : "公开仓库"} ${item.repository.name} 中的 ${item.subject.title}(${type}) 里${action}`,
             time: new Date(item.updated_at),
-            url: new URL(item.subject.url.replace("api.", "").replace("/repos/", "/")),
+            url: new URL(subURL.replace("api.", "").replace("/repos/", "/")),
             picture: new URL("https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png")
         })
     }
