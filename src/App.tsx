@@ -122,7 +122,7 @@ class ControlPanel extends PureComponent<any, State> {
 
     return (
       <>
-        <div style={{ width: "100%", height: "100%", verticalAlign: "top", background: "#cfcfcf", overflow: "scroll" }}>
+        <div style={{ width: "100%", height: "100%", verticalAlign: "top", background: "#cfcfcf", overflow: "scroll",paddingTop:10 }}>
 
           <div style={{ width: "100%", height: 50, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <span style={{ fontSize: 24 }}>
