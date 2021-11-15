@@ -38,8 +38,20 @@ class ControlPanel extends PureComponent<any, State> {
     }
   }
   async componentDidMount() {
-
-    this.startBackgroundFetching()
+    this.setState({
+      notifications: [{
+        id: `gh`,
+        brief: ``,
+        title: `正在加载`,
+        summary: ` `,
+        time: new Date(),
+        url: new URL("https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"),
+        picture: new URL("https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png")
+      }]
+    })
+    setTimeout(() => {
+      this.startBackgroundFetching()
+    }, 1000);
 
     setInterval(() => {
       this.setState({ ts: performance.now() })
@@ -122,7 +134,7 @@ class ControlPanel extends PureComponent<any, State> {
 
     return (
       <>
-        <div style={{ width: "100%", height: "100%", verticalAlign: "top", background: "#cfcfcf", overflow: "scroll",paddingTop:10 }}>
+        <div style={{ width: "100%", height: "100%", verticalAlign: "top", background: "#cfcfcf", overflow: "scroll", paddingTop: 10 }}>
 
           <div style={{ width: "100%", height: 50, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <span style={{ fontSize: 24 }}>
@@ -135,9 +147,7 @@ class ControlPanel extends PureComponent<any, State> {
           </div>
           <div style={{ width: "100%", height: "calc(100% - 50px)", }}>
             {Array.from(this.state.notifications, (item, aid) => {
-              if (loacalRemoved.has(item.id)) {
-                return
-              }
+            const removed = loacalRemoved.has(item.id)
               displayed++
               return <div key={`${item.id}-${aid}`} style={{ width: "100%", overflowX: "scroll" }} onScroll={async (event) => {
                 const target = event.target as HTMLDivElement
@@ -147,9 +157,9 @@ class ControlPanel extends PureComponent<any, State> {
                   await this.removeNotification(item.id)
                 }
               }}>
-                <div style={{ width: "400%" }}>
-                  <div style={{ width: "25%", padding: 16, paddingTop: 0 }}>
-                    <Card loading={false} style={{ position: "relative", borderRadius: 15 }} onClick={async () => {
+                <div style={{ width: removed? "100%":"400%" }}>
+                  <div style={{ width: removed? "100%":"25%", padding: 16, paddingTop: 0 }}>
+                    <Card loading={false} style={{ position: "relative", borderRadius: 15,opacity:loacalRemoved.has(item.id)?0.3:1 }} onClick={async () => {
                       await OpenLink(item.url.href)
                       await this.removeNotification(item.id)
                     }}>
@@ -158,9 +168,9 @@ class ControlPanel extends PureComponent<any, State> {
                         title={item.title}
                         description={item.summary}
                       />
-                      <div style={{ position: "absolute", right: 10, top: 5, fontSize: 12, fontWeight: 400 }}>
-                        {/* {"五分钟"} */}
-                        {`${item.id}-${aid}`}
+                      <div style={{ position: "absolute", right: 13, top: 8, fontSize: 12, fontWeight: 400 }}>
+                        {item.time.toLocaleTimeString()}
+                        {/* {`${item.id}-${aid}`} */}
                       </div>
                     </Card>
 

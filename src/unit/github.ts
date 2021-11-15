@@ -24,7 +24,8 @@ type GithubNotification = {
 // https://github.com/bootdev/az_lungcancer_frontend/issues/266?notification_referrer_id=NT_kwDOAfQB3LMyNjcxMTU2MDgxOjMyNzY4NDc2#issuecomment-968458428
 export async function GetGithubNotifications(): Promise<Notification[]> {
     const API_KEY: string = GithubAPIKEY()
-    const response = await fetch(`https://api.github.com/notifications?page=1&per_page=100`, {
+    const response = await fetch(`https://api.github.com/notifications?page=1&per_page=100&tts=${new Date().valueOf()}`, {
+        // const response = await fetch(`https://api.github.com/repos/bootdev/az_lungcancer_frontend/issues/comments/968579060`, {
         method: 'GET', headers: {
             "Content-Type": "application/json",
             Authorization: `token ${API_KEY}`
@@ -46,12 +47,12 @@ export async function GetGithubNotifications(): Promise<Notification[]> {
                 break;
         }
         result.push({
-            id: `gh-${item.id}(${item.updated_at})`,
+            id: `gh-${item.id}(${item.updated_at}/${item.reason}/${item.subject.url}/)`,
             brief: `${item.subject.title}`,
             title: `有人在 ${item.subject.type} ${action}`,
             summary: `在${item.repository.private ? "私有仓库" : "公开仓库"} ${item.repository.name} 中的 ${item.subject.title}${item.subject.type} 里有人${action}`,
             time: new Date(item.updated_at),
-            url: new URL(item.subject.url.replace("api.","").replace("/repos/","/")),
+            url: new URL(item.subject.url.replace("api.", "").replace("/repos/", "/")),
             picture: new URL("https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png")
         })
     }
