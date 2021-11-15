@@ -1,0 +1,76 @@
+body {
+  margin: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  height: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.App-left {
+  background-color: brown;
+  text-align: center;
+  padding-top: 48px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.App-left>.App-bar {
+  height: 32px;
+}
+
+.App-left>.App-container {
+  display: inline-block;
+  text-align: left;
+  width: 100%;
+  padding: 16px;
+  background-color: #012456;
+  color: white;
+  overflow: auto;
+  font-size: 14px;
+  line-height: 16px;
+  font-family: serif;
+}
+.App-right {
+  background-color: brown;
+  text-align: center;
+  padding-top: 48px;
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+}
+.App-right>.App-bar {
+  height: 32px;
+  width: 100%;
+}
+.App-right>.App-container {
+  display: inline-block;
+  text-align: left;
+  width: 100%;
+  padding: 16px;
+  background-color: #012456;
+  color: white;
+  overflow: auto;
+  font-size: 14px;
+  line-height: 16px;
+  font-family: serif;
+}
+.App-right>.App-container>div {
+  min-height: 16px;
+}
