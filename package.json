@@ -13,8 +13,10 @@
     "@types/react-dom": "^17.0.0",
     "@types/request": "^2.48.7",
     "antd": "^4.16.11",
+    "friendly-time": "^1.1.1",
     "js-md5": "^0.7.3",
     "md5": "^2.3.0",
+    "nprogress": "^0.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
@@ -47,6 +49,7 @@
     ]
   },
   "devDependencies": {
-    "@types/md5": "^2.3.1"
+    "@types/md5": "^2.3.1",
+    "@types/nprogress": "^0.2.0"
   }
 }
