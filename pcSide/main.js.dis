@@ -17,8 +17,13 @@ http.createServer(function (request, response) {
         console.log(request.url)
         let url = new URL(`http://127.0.0.1:8888${request.url}`)
         let target = url.searchParams.get("url")
+		
         console.log("url", url)
+        console.log("indexOf", target.indexOf("/pulls/"))
+
+		target = target.replace("/pulls/","/pull/")
         console.log("target", target)
+		
         open(target)
         response.writeHead(200, { 'Content-Type': 'text/plain' });
 
