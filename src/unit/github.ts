@@ -1,4 +1,4 @@
-import { GithubAPIKEY } from "../config/key"
+import { GithubAPIKEY } from "../../config/key"
 import { Notification } from '../unit/type';
 //@ts-ignore
 import { FriendlyTime } from 'friendly-time';

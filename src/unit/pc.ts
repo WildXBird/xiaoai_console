@@ -1,5 +1,3 @@
-import { GithubAPIKEY } from "../config/key"
-import { Notification } from '../unit/type';
 
 export async function OpenLink(url: string) {
     try {
