@@ -63,7 +63,10 @@ class ControlPanel extends PureComponent<any, State> {
               <KK_LoopTimer seconds={60} size={36} />
             </Col>
             <Col span={12}>
-              <KK_Bug  size={36} />
+              <KK_Bug  onRecorded={(base64)=>{
+                console.log(base64)
+                window.open(base64)
+              }}  />
             </Col>
           </Row>
 

@@ -1721,6 +1721,11 @@
   resolved "https://registry.npmjs.org/@types/caseless/-/caseless-0.12.2.tgz"
   integrity sha512-6ckxMjBBD8URvjB6J3NcnuAn5Pkl7t3TizAg+xdlzzQGSPSmBcXf8KoIH0ua/i+tio+ZRUHEXp0HEmvaR4kt0w==
 
+"@types/dom-mediacapture-record@^1.0.11":
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/@types/dom-mediacapture-record/-/dom-mediacapture-record-1.0.11.tgz#f61b17e6131d76629d4039b02634c7e786b82c3a"
+  integrity sha512-ODVOH95x08arZhbQOjH3no7Iye64akdO+55nM+IGtTzpu2ACKr9CQTrI//CCVieIjlI/eL+rK1hQjMycxIgylQ==
+
 "@types/eslint@^7.2.6":
   version "7.2.6"
   resolved "https://registry.npmjs.org/@types/eslint/-/eslint-7.2.6.tgz"
@@ -1871,6 +1876,11 @@
     "@types/prop-types" "*"
     "@types/scheduler" "*"
     csstype "^3.0.2"
+
+"@types/recorder-js@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/@types/recorder-js/-/recorder-js-1.0.2.tgz"
+  integrity sha512-Q5dMNR4ASWK6NXlnfTcoqJqGeOnOwoSbnUCFd4yjt3xIFXIrk+AiGoznUyA+In+EyYTN7+7vJ+KSG8lnHlM78g==
 
 "@types/request@^2.48.7":
   version "2.48.7"
@@ -5944,6 +5954,11 @@ ini@^1.3.5:
   resolved "https://registry.npmjs.org/ini/-/ini-1.3.8.tgz"
   integrity sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==
 
+inline-worker@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.npmjs.org/inline-worker/-/inline-worker-1.1.0.tgz"
+  integrity sha512-2nlxBGg5Uoop6IRco9wMzlAz62690ylokrUDg3IaCi9bJaq0HykbWlRtRXgvSKiBNmCBGXnOCFBkIFjaSGJocA==
+
 internal-ip@^4.3.0:
   version "4.3.0"
   resolved "https://registry.npmjs.org/internal-ip/-/internal-ip-4.3.0.tgz"
@@ -7530,9 +7545,9 @@ multicast-dns@^6.0.1:
     thunky "^1.0.2"
 
 nan@^2.12.1:
-  version "2.15.0"
-  resolved "https://registry.yarnpkg.com/nan/-/nan-2.15.0.tgz#3f34a473ff18e15c1b5626b62903b5ad6e665fee"
-  integrity sha512-8ZtvEnA2c5aYCZYd1cvgdnU6cqwixRoYg70xPLWUws5ORTa/lnw+u4amixRS/Ac5U5mQVgp9pnlSUnbNWFaWZQ==
+  version "2.16.0"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.16.0.tgz#664f43e45460fb98faf00edca0bb0d7b8dce7916"
+  integrity sha512-UdAqHyFngu7TfQKsCBgAA6pWDkT8MAO7d0jyOecVhN5354xbLqdn8mV9Tat9gepAupm0bt2DbeaSC8vS52MuFA==
 
 nanoid@^3.1.20:
   version "3.1.20"
@@ -9725,6 +9740,18 @@ readdirp@~3.5.0:
   integrity sha512-cMhu7c/8rdhkHXWsY+osBhfSy0JikwpHK/5+imo+LpeasTF8ouErHrlYkwT0++njiyuDvc7OFY5T3ukvZ8qmFQ==
   dependencies:
     picomatch "^2.2.1"
+
+recorder-js@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.npmjs.org/recorder-js/-/recorder-js-1.0.7.tgz"
+  integrity sha512-jSG4GP1FUV9vGxY9lrvaI2yGq1OwfIvK8MF8qPndODhkwGx+iPBTG7ZhWK8YHt/zT/c88MmFZCntv9G7x1Exxg==
+  dependencies:
+    inline-worker "^1.1.0"
+
+recorder-wlor@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/recorder-wlor/-/recorder-wlor-1.0.4.tgz"
+  integrity sha512-rkEpnFM4IOL7cAu5ZNa3VagDQyxpJuIqdMgrvKyDuHRuIWx83gMghPJqbnkurP6PkissYetWqZkr8ucz1xBMZw==
 
 recursive-readdir@2.2.2:
   version "2.2.2"
