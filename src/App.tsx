@@ -65,7 +65,6 @@ class ControlPanel extends PureComponent<any, State> {
             <Col span={12}>
               <KK_Bug  onRecorded={(base64)=>{
                 console.log(base64)
-                window.open(base64)
               }}  />
             </Col>
           </Row>

@@ -4,9 +4,9 @@ import { PureComponent } from 'react';
 
 type Props = {
     /**音频文件回调 */
-    onRecorded:(fileB64:string)=>void
+    onRecorded: (fileB64: string) => void
     /**音频自动分段时间，单位秒 */
-    splitTime?:number
+    splitTime?: number
 }
 type State = {
     recording?: boolean
@@ -134,7 +134,6 @@ export class KK_Bug extends PureComponent<Props, State> {
         this.mediaRecorder = new MediaRecorder(stream);
 
         this.mediaRecorder.start();
-        console.log(this.mediaRecorder.state);
         console.log("recorder started");
         this.setState({ recording: true })
 
@@ -146,10 +145,10 @@ export class KK_Bug extends PureComponent<Props, State> {
             console.log("ondataavailable2", chunks)
 
         }
-      
+
         setTimeout(() => {
             this.mediaRecorder?.stop()
-        }, 2500);
+        }, 60000);
         const recordStop = () => {
             this.setState({ recording: false })
 
@@ -165,22 +164,22 @@ export class KK_Bug extends PureComponent<Props, State> {
             const audioURL = URL.createObjectURL(blob);
             // URL.revokeObjectURL(audioURL)
 
-            console.log({audioURL})
+            console.log({ audioURL })
 
             var reader = new FileReader();
-            reader.onload =  (e)=> {
-              console.log("b64",e.target)
-              if(e.target){
-                const b64 = String(e.target.result)
-                this.props.onRecorded(b64)
-              }
+            reader.onload = (e) => {
+                console.log("b64", e.target)
+                if (e.target) {
+                    const b64 = String(e.target.result)
+                    this.props.onRecorded(b64)
+                }
 
 
 
             }
             reader.readAsDataURL(blob);
 
-    
+
         }
         this.mediaRecorder.onstop = recordStop
     }
