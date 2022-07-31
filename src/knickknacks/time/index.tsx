@@ -71,7 +71,7 @@ export class KK_Time extends PureComponent<Props, State> {
         const timeString = `${TIME}`
 
         const msTIME = new Date().getMilliseconds()
-        const msString = `${msTIME}`.padStart(3, '0')
+        const msString = `${msTIME}`.padEnd(3, '0')
 
 
         this.setState({

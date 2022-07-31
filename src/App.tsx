@@ -14,6 +14,8 @@ import { setInterval } from 'timers';
 import "./App";
 import { KK_Time } from './knickknacks/time';
 import { KK_PaidCalc } from './knickknacks/paidCalc';
+import { KK_LoopTimer } from './knickknacks/loopTimer';
+import { KK_Bug } from './knickknacks/bug';
 
 
 type State = {
@@ -58,9 +60,11 @@ class ControlPanel extends PureComponent<any, State> {
           </Row>
           <Row>
             <Col span={12}>
-              <KK_Time size={36} />
+              <KK_LoopTimer seconds={60} size={36} />
             </Col>
-            <Col span={12}>col-12</Col>
+            <Col span={12}>
+              <KK_Bug  size={36} />
+            </Col>
           </Row>
 
 

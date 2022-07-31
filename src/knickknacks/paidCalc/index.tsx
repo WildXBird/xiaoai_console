@@ -27,7 +27,9 @@ export class KK_PaidCalc extends PureComponent<Props, State> {
         const baseSize = this.props.size || 24
         return (
             <>
-                <div style={{ width: "100%", height: "100%", textAlign: "center" }}>
+                <div
+                  className='KK_PaidCalc'
+                style={{ width: "100%", height: "100%", textAlign: "center" }}>
                     <Progress
                         type="circle"
                         percent={(this.state.已工作时间比例 || 0) * 100}
