@@ -4,7 +4,7 @@ import { PureComponent } from 'react';
 
 type Props = {
     /**音频文件回调 */
-    onRecorded: (fileB64: string) => void
+    onRecorded: (blobUrl: string, fileB64: string) => void
     /**音频自动分段时间，单位秒 */
     splitTime?: number
 }
@@ -130,9 +130,25 @@ export class KK_Bug extends PureComponent<Props, State> {
         draw()
     }
     async record(stream: MediaStream) {
-        let chunks: Blob[] = [];
-        this.mediaRecorder = new MediaRecorder(stream);
+        let coder: string | undefined = undefined
+        const coders = ["audio/ogg; codecs=opus","audio/webm;codecs=opus"]
+        for (let type of coders) {
+            if (MediaRecorder.isTypeSupported(type)) {
+                coder = type
+                break
+            }
+        }
+        if (!coder) {
+            throw "没有支持的格式"
+        }
 
+        let chunks: Blob[] = [];
+        this.mediaRecorder = new MediaRecorder(stream, {
+            mimeType: coder,
+            audioBitsPerSecond: 128000,
+            audioBitrateMode:"cbr"
+        });
+        console.log("this.mediaRecorder", this.mediaRecorder)
         this.mediaRecorder.start();
         console.log("recorder started");
         this.setState({ recording: true })
@@ -148,7 +164,7 @@ export class KK_Bug extends PureComponent<Props, State> {
 
         setTimeout(() => {
             this.mediaRecorder?.stop()
-        }, 60000);
+        }, 60_000);
         const recordStop = () => {
             this.setState({ recording: false })
 
@@ -159,7 +175,8 @@ export class KK_Bug extends PureComponent<Props, State> {
 
 
 
-            const blob = new Blob(chunks, { 'type': 'audio/ogg; codecs=opus' });
+            // const blob = new Blob(chunks, { 'type': 'audio/ogg; codecs=opus' });
+            const blob = new Blob(chunks, { 'type': coder });
             chunks = [];
             const audioURL = URL.createObjectURL(blob);
             // URL.revokeObjectURL(audioURL)
@@ -171,7 +188,7 @@ export class KK_Bug extends PureComponent<Props, State> {
                 console.log("b64", e.target)
                 if (e.target) {
                     const b64 = String(e.target.result)
-                    this.props.onRecorded(b64)
+                    this.props.onRecorded(audioURL, b64)
                 }
 
 

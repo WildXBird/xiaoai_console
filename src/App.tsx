@@ -63,9 +63,14 @@ class ControlPanel extends PureComponent<any, State> {
               <KK_LoopTimer seconds={60} size={36} />
             </Col>
             <Col span={12}>
-              <KK_Bug  onRecorded={(base64)=>{
+              <KK_Bug onRecorded={(blobUrl, base64) => {
                 console.log(base64)
-              }}  />
+                var a = document.createElement('a');
+
+                a.href = blobUrl
+                a.download = "Mofei的CSV.ogg";
+                a.click();
+              }} />
             </Col>
           </Row>
 
