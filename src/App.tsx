@@ -16,6 +16,7 @@ import { KK_Time } from './knickknacks/time';
 import { KK_PaidCalc } from './knickknacks/paidCalc';
 import { KK_LoopTimer } from './knickknacks/loopTimer';
 import { KK_Bug } from './knickknacks/bug';
+import { MIUI } from './layout/miui';
 
 
 type State = {
@@ -43,6 +44,7 @@ class ControlPanel extends PureComponent<any, State> {
   }
 
   render() {
+    return <MIUI/>
     return (
       <>
         <div style={{ width: "100%", height: "100%", verticalAlign: "top", background: "#cfcfcf", overflow: "scroll", paddingTop: 10 }}>

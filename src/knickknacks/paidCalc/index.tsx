@@ -24,20 +24,20 @@ export class KK_PaidCalc extends PureComponent<Props, State> {
 
     render() {
 
-        const baseSize = this.props.size || 24
         return (
             <>
                 <div
-                  className='KK_PaidCalc'
-                style={{ width: "100%", height: "100%", textAlign: "center" }}>
+                    className='KK_PaidCalc'
+                    style={{ width: "100%", height: "100%", textAlign: "center", }}>
                     <Progress
+                        size="small"
                         type="circle"
                         percent={(this.state.已工作时间比例 || 0) * 100}
                         status={this.state.加班 ? "exception" : "success"}
                         format={() => {
                             if (this.state.加班) {
                                 if (this.state.已工作时间比例) {
-                                    return `${(this.state.已工作时间比例 * 100).toFixed(3)}%`
+                                    return `${((this.state.已工作时间比例 * 100) - 100).toFixed(2)}%`
                                 } else {
                                     return "!"
                                 }
@@ -49,7 +49,9 @@ export class KK_PaidCalc extends PureComponent<Props, State> {
             </>
         );
     }
-
+    async componentDidMount() {
+        window.requestAnimationFrame(this.updateData.bind(this));
+    }
     /**是否是周末时间 */
     isWeekend(time: Date) {
         const week = new Date(time).toLocaleDateString('zh-CN', { weekday: 'short' })
@@ -81,7 +83,7 @@ export class KK_PaidCalc extends PureComponent<Props, State> {
             加班: true,
         }
         // const now = new Date(new Date().valueOf() - 1000 * 60 * 60 * (0 + 12))
-        const now = new Date( )
+        const now = new Date()
         const isWeekend = this.isWeekend(now)
         if (isWeekend) {
             return result
@@ -141,10 +143,7 @@ export class KK_PaidCalc extends PureComponent<Props, State> {
         }
         return result
     }
-    async componentDidMount() {
-        window.requestAnimationFrame(this.updateData.bind(this));
 
-    }
 
     async updateData() {
         const times = this.getTimes()

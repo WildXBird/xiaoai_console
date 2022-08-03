@@ -51,7 +51,8 @@ export class KK_Bug extends PureComponent<Props, State> {
         return this.mediaRecorder?.state || "unset"
     }
     async componentDidMount() {
-        window.requestAnimationFrame(this.updateData.bind(this));
+        alert(`${window.innerHeight},${window.innerWidth}`)
+        // window.requestAnimationFrame(this.updateData.bind(this));
         const MediaStream = await this.initMediaStream()
         this.setVisualizeFromStream(MediaStream)
         this.record(MediaStream)
@@ -60,15 +61,17 @@ export class KK_Bug extends PureComponent<Props, State> {
 
 
     async updateData() {
-        window.requestAnimationFrame(this.updateData.bind(this));
+        // window.requestAnimationFrame(this.updateData.bind(this));
     }
     async initMediaStream() {
         if (!navigator.mediaDevices.getUserMedia) {
+            alert('getUserMedia not supported on your browser!')
             throw 'getUserMedia not supported on your browser!'
         }
-
+        alert("navigator")
         const constraints = { audio: true };
         const MediaStream = await navigator.mediaDevices.getUserMedia(constraints)
+        alert(typeof MediaStream)
         return MediaStream
     }
 
@@ -131,7 +134,7 @@ export class KK_Bug extends PureComponent<Props, State> {
     }
     async record(stream: MediaStream) {
         let coder: string | undefined = undefined
-        const coders = ["audio/ogg; codecs=opus","audio/webm;codecs=opus"]
+        const coders = ["audio/ogg; codecs=opus", "audio/webm;codecs=opus"]
         for (let type of coders) {
             if (MediaRecorder.isTypeSupported(type)) {
                 coder = type
@@ -146,7 +149,7 @@ export class KK_Bug extends PureComponent<Props, State> {
         this.mediaRecorder = new MediaRecorder(stream, {
             mimeType: coder,
             audioBitsPerSecond: 128000,
-            audioBitrateMode:"cbr"
+            // audioBitrateMode:"cbr"
         });
         console.log("this.mediaRecorder", this.mediaRecorder)
         this.mediaRecorder.start();

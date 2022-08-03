@@ -1200,6 +1200,11 @@
   resolved "https://registry.npmjs.org/@ctrl/tinycolor/-/tinycolor-3.4.0.tgz"
   integrity sha512-JZButFdZ1+/xAfpguQHoabIXkcqRRKpMrWKBkpEZZyxfY9C1DpADFB8PEqGSTeFr135SaTRfKqGKx5xSCLI7ZQ==
 
+"@dcloudio/types@^2.6.12":
+  version "2.6.12"
+  resolved "https://registry.yarnpkg.com/@dcloudio/types/-/types-2.6.12.tgz#6c9559b9e65483f355dd61cb88fe8c14c8e61189"
+  integrity sha512-mrCMwcINy1IFjU9VUqLeWBkj404yWs5paLDttBcA+eqUjanuUQbBcTVPqlrGgkyzLXDcV2oDDZRSNxNpXi4kMQ==
+
 "@eslint/eslintrc@^0.3.0":
   version "0.3.0"
   resolved "https://registry.npmjs.org/@eslint/eslintrc/-/eslintrc-0.3.0.tgz"
